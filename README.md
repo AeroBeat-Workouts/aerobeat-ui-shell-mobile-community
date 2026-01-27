@@ -1,6 +1,6 @@
-# AeroBeat UI Shell Mobile Community
+# AeroBeat UI Shell - Mobile Community Edition
 
-This is an **Interaction Shell** for the AeroBeat platform running the Community Edition on mobile hardware.
+This is an **Interaction Shell** for the AeroBeat platform.
 
 *   **License:** GPLv3
 *   **Role:** Defines the layout and flow of the application (Mobile, VR, Arcade).
