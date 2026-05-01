@@ -81,13 +81,27 @@ The repo turned out to be a very small GodotEnv shell with no package manifest b
 - Confirm `.testbed/addons.jsonc` no longer carries `aerobeat-core` and only pins the current shell-level shared dependencies plus GUT.
 - Re-run the documented headless import + GUT test commands; expected result is `3/3 passed`.
 
+**QA Findings (2026-05-01):**
+- **Status:** ✅ Pass
+- Independently verified repo truth alignment against `REF-04`, `REF-05`, `REF-06`, and `REF-07`.
+- Confirmed `README.md` presents this shell as a **future / second-wave** mobile surface and preserves the locked release order: **PC community first, mobile second, VR third**.
+- Confirmed `plugin.cfg` description does **not** present mobile as the current primary v1 shell.
+- Confirmed committed `.testbed/addons.jsonc` removes the stale `aerobeat-core` pin and keeps only `aerobeat-ui-core`, `aerobeat-ui-kit-community`, and `gut`.
+- Confirmed `.testbed/project.godot` testbed naming stays future-facing (`AeroBeat UI Shell Mobile Future Testbed`).
+- Confirmed `.testbed/tests/test_example.gd` now guards README wording, plugin metadata, and manifest dependency truth.
+- Re-ran validation successfully from a clean QA pass:
+  - `cd .testbed && godotenv addons install`
+  - `godot --headless --path .testbed --import`
+  - `godot --headless --path .testbed --script addons/gut/gut_cmdln.gd -gdir=res://tests -ginclude_subdirs -gexit`
+  - Result: **3/3 tests passed** on commit `a5ec60ff386334b218d7ee210e8a485c6703a306` (`Record mobile shell coder handoff`), with no repo-local code defects found.
+
 ---
 
 ## Final Results
 
 **Status:** ⚠️ Partial
 
-**What We Built:** Completed the coder-side downscope alignment pass for the mobile community shell, updating repo truth surfaces and validation so the repo now documents itself as a future / second-wave mobile shell instead of an active primary v1 shell.
+**What We Built:** Completed the coder-side downscope alignment pass for the mobile community shell, then independently QA-verified the repo truth surfaces and validation flow end-to-end. The repo now documents itself as a future / second-wave mobile shell instead of an active primary v1 shell.
 
 **Reference Check:**
 - `REF-04` satisfied: repo wording matches the docs page's “future platform path” positioning.
@@ -96,9 +110,10 @@ The repo turned out to be a very small GodotEnv shell with no package manifest b
 
 **Commits:**
 - `1619022262c3c68d142a62aa579180f461ed5fd9` - Downscope-align mobile shell repo truth
+- `a5ec60ff386334b218d7ee210e8a485c6703a306` - Record mobile shell coder handoff
 
-**Lessons Learned:** In these minimal shell repos, the highest-value downscope work is often metadata, manifest cleanup, and turning placeholder tests into scope-truth guardrails.
+**Lessons Learned:** In these minimal shell repos, the highest-value downscope work is often metadata, manifest cleanup, and turning placeholder tests into scope-truth guardrails; QA can validate most of the contract by checking truth surfaces plus the hidden testbed workflow.
 
 ---
 
-*Completed on 2026-05-01 (coder handoff; QA/audit pending)*
+*Completed on 2026-05-01 (coder + QA complete; audit pending)*
