@@ -74,7 +74,7 @@ The repo turned out to be a very small GodotEnv shell with no package manifest b
 - `godot --headless --path .testbed --script addons/gut/gut_cmdln.gd -gdir=res://tests -ginclude_subdirs -gexit`
 - Result: **3/3 tests passed**.
 
-**Commit:** `PENDING_COMMIT_HASH`
+**Commit:** `1619022262c3c68d142a62aa579180f461ed5fd9`
 
 **QA Handoff:**
 - Verify the repo root README and plugin metadata consistently label mobile as future / second-wave scope.
@@ -95,7 +95,7 @@ The repo turned out to be a very small GodotEnv shell with no package manifest b
 - `REF-07` satisfied: future-facing shell surfaces remain documented without overstating current parity.
 
 **Commits:**
-- `PENDING_COMMIT_HASH` - Downscope-align mobile shell repo truth
+- `1619022262c3c68d142a62aa579180f461ed5fd9` - Downscope-align mobile shell repo truth
 
 **Lessons Learned:** In these minimal shell repos, the highest-value downscope work is often metadata, manifest cleanup, and turning placeholder tests into scope-truth guardrails.
 
