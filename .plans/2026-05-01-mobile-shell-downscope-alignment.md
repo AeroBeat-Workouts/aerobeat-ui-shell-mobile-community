@@ -95,13 +95,25 @@ The repo turned out to be a very small GodotEnv shell with no package manifest b
   - `godot --headless --path .testbed --script addons/gut/gut_cmdln.gd -gdir=res://tests -ginclude_subdirs -gexit`
   - Result: **3/3 tests passed** on commit `a5ec60ff386334b218d7ee210e8a485c6703a306` (`Record mobile shell coder handoff`), with no repo-local code defects found.
 
+**Audit Findings (2026-05-01):**
+- **Status:** ✅ Pass
+- Independently truth-checked the repo against `REF-04`, `REF-05`, `REF-06`, and `REF-07`, the coder/QA notes, the shipped file surfaces, and the recorded commits (`1619022262c3c68d142a62aa579180f461ed5fd9`, `a5ec60ff386334b218d7ee210e8a485c6703a306`, `5d7fb7055b710c987b1b0f0d73234568093622fb`).
+- Confirmed the current repo state matches the intended downscope contract: `README.md`, `plugin.cfg`, `.testbed/addons.jsonc`, `.testbed/project.godot`, and `.testbed/tests/test_example.gd` all consistently present mobile as a **future / second-wave** shell rather than the active primary v1 target.
+- Confirmed the stale `aerobeat-core` dependency is gone and no contradictory repo-local manifest or metadata surface remains.
+- Re-ran the validation flow independently as auditor:
+  - `cd .testbed && godotenv addons install`
+  - `godot --headless --path . --import`
+  - `godot --headless --path . --script addons/gut/gut_cmdln.gd -gdir=res://tests -ginclude_subdirs -gexit`
+  - Result: **3/3 tests passed** with exit code `0`.
+- No remaining repo-local gap was found for bead `oc-wkt`; bead is eligible for closure.
+
 ---
 
 ## Final Results
 
-**Status:** ⚠️ Partial
+**Status:** ✅ Complete
 
-**What We Built:** Completed the coder-side downscope alignment pass for the mobile community shell, then independently QA-verified the repo truth surfaces and validation flow end-to-end. The repo now documents itself as a future / second-wave mobile shell instead of an active primary v1 shell.
+**What We Built:** Completed the coder-side downscope alignment pass for the mobile community shell, then independently QA-verified and auditor-verified the repo truth surfaces and validation flow end-to-end. The repo now documents itself as a future / second-wave mobile shell instead of an active primary v1 shell.
 
 **Reference Check:**
 - `REF-04` satisfied: repo wording matches the docs page's “future platform path” positioning.
@@ -111,9 +123,10 @@ The repo turned out to be a very small GodotEnv shell with no package manifest b
 **Commits:**
 - `1619022262c3c68d142a62aa579180f461ed5fd9` - Downscope-align mobile shell repo truth
 - `a5ec60ff386334b218d7ee210e8a485c6703a306` - Record mobile shell coder handoff
+- `5d7fb7055b710c987b1b0f0d73234568093622fb` - Record mobile shell QA findings
 
-**Lessons Learned:** In these minimal shell repos, the highest-value downscope work is often metadata, manifest cleanup, and turning placeholder tests into scope-truth guardrails; QA can validate most of the contract by checking truth surfaces plus the hidden testbed workflow.
+**Lessons Learned:** In these minimal shell repos, the highest-value downscope work is often metadata, manifest cleanup, and turning placeholder tests into scope-truth guardrails; QA and audit can validate most of the contract by checking truth surfaces plus the hidden testbed workflow.
 
 ---
 
-*Completed on 2026-05-01 (coder + QA complete; audit pending)*
+*Completed on 2026-05-01*
