@@ -32,5 +32,5 @@ func test_manifest_keeps_only_current_mobile_shell_dependencies() -> void:
 	var manifest := _read_text(ADDONS_MANIFEST_PATH)
 	assert_true(manifest.contains('"aerobeat-ui-core"'))
 	assert_true(manifest.contains('"aerobeat-ui-kit-community"'))
-	assert_true(manifest.contains('"gut"'))
+	assert_true(manifest.contains('"aerobeat-vendor-godot-unit-test"'))
 	assert_false(manifest.contains('"aerobeat-core"'))
